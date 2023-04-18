@@ -1,0 +1,15 @@
+@model IEnumerable<Book>
+
+@{
+    var pageName = ViewBag.CurrentCategory;
+    ViewData["Title"] = pageName;
+}
+
+<h2>@pageName</h2>
+<hr />
+
+@foreach (var book in Model)
+{
+    @await Html.PartialAsync("BookSummary", book)
+}
+<br />

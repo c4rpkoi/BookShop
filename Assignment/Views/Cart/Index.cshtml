@@ -1,0 +1,51 @@
+﻿@model CartViewModel
+
+@{
+    var pageName = "Giỏ hàng";
+    ViewData["Title"] = pageName;
+}
+
+<h2>@pageName của bạn</h2>
+<h4>Sách trong giỏ.</h4>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Selected Amount</th>
+            <th>Pizza</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.CartDetails)
+        {
+            <tr>
+                <td class="text-center"><a class="btn btn-default" asp-action="RemoveFromShoppingCart" asp-route-pizzaId="@line.Books.ID"><b>-</b></a>          <b>@line.Amount</b>          <a class="btn btn-default" asp-action="AddToShoppingCart" asp-route-pizzaId="@line.Books.ID"><b>+</b></a></td>
+                <td class="text-left">@line.Books.Name</td>
+                <td class="text-right">@line.Books.Price.ToString("c")</td>
+                <td class="text-right">
+                    @((line.Amount * line.Books.Price).ToString("c"))
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-right">Total:</td>
+            <td class="text-right">
+                @Model.CartTotal.ToString("c")
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<div align="right">
+    @if (Model.CartTotal > 0)
+    {
+        <a asp-controller="Bill" asp-action="Checkout" class="btn btn-primary">Check Out</a>
+    }
+</div>
+<div align="left">
+    <a asp-controller="Cart" asp-action="ClearCart" class="btn btn-danger">Clear Cart</a>
+</div>
+

@@ -1,0 +1,31 @@
+﻿@model Assignment.Models.AuthorBooks
+
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Chi tiết</h2>
+
+<div>
+    <h4>Sách tác giả</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Books)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Books.Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

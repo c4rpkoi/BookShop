@@ -1,0 +1,36 @@
+@model IEnumerable<Book>
+
+<div class="row carousel-holder" align="center">
+    <div class="col-md-12">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                @foreach (var book in Model)
+                {
+                    <li data-target="#carousel-example-generic" data-slide-to="@book.ID"></li>
+                }
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="text-center"><b>Weekly Specials!</b></div>
+                    <img class="slide-image" src="/images/great-books-for-anytime-2000-4ff4221eb1e54b659689fef7d5e265d5.jpg" alt="Home page picture">
+                </div>
+                @foreach (var book in Model)
+                {
+                <div class="item">
+                    <div class="text-center"><b>@book.Name</b></div>
+                    <a asp-controller="Pizzas" asp-action="DisplayDetails" asp-route-id="@book.ID"> 
+                        <img class="slide-image" src=" /images/@book.ImageUrl" alt="Picture of @book.Name">
+                    </a>
+                </div>
+                }
+            </div>
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
+</div>

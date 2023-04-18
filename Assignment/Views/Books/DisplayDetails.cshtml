@@ -1,0 +1,60 @@
+﻿@model Book
+
+
+@{
+    var ModelName = "Books Details";
+    ViewData["Title"] = ModelName;
+}
+
+<h2>@ModelName</h2>
+<hr />
+
+<p>
+    <a asp-action="ListAll">Back to List</a>
+</p>
+
+<div class="thumbnail">
+    <img alt="@Model.Name" src="/images/@Model.ImageUrl" height="800" width="800" class="img-responsive" >
+    <div class="caption-full">
+        <h2 class="pull-right">@Model.Price.ToString("c")</h2>
+        <h2>
+            <a href="">@Model.Name</a>
+        </h2>
+        <div>
+            <h4>Category: <b> @Model.Category.Name </b></h4>
+            <h4>Supplier: <b> @Model.Supplier.Name </b></h4>
+            <h4>Available Quantity: <b> @Model.AvailableQuantity </b></h4>
+            <p>@Model.Description</p>
+            <p>
+                <h4><b>Tác giả:</b></h4>
+
+                @if (ViewBag.AuthorBooks.Count > 0)
+                {
+                    @foreach (var ing in ViewBag.AuthorBooks)
+                    {
+                    <div> @ing </div>
+                    }
+                }else
+                {
+                <div>Không có @Html.DisplayNameFor(Model => Model.AuthorBooks) nào được tìm thấy. </div>
+                }
+            </p>
+        
+            @using (Html.BeginForm("AddToShoppingCart", "Cart", FormMethod.Post)) 
+            {
+                <p>Số Lượng: <input type="number" value="1" name="amount" /></p>
+                              <input type="hidden" value="@Model.ID" name="bookID" />
+                 <input class="btn btn-primary" type="submit" value="Thêm vào giỏ hàng" />
+            }
+        </div>
+
+        <br />
+        
+        @*<p class="button">
+            <a class="btn btn-primary" asp-controller="Cart" asp-action="AddToShoppingCart"
+                asp-route-bookID="@Model.ID" asp-route-amount="@Model.AvailableQuantity">
+                Add Thêm sách
+            </a>
+        </p>*@
+    </div>
+</div>

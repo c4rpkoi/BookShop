@@ -1,0 +1,123 @@
+﻿@model Bill
+
+@{
+    var pageName = "Details";
+    ViewData["Title"] = pageName;
+}
+
+<h2>@pageName</h2>
+
+<div>
+    <h4>Đơn hàng</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AddressLine)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AddressLine)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BillPlaced)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BillPlaced)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.Email)
+        </dd>
+        <dt>
+            <br />----- Bill
+        </dt>
+        <dd>
+            <br /><b>Details -----</b>
+        </dd>
+        @{decimal subtotal = 0M;}
+        @foreach (BillDetail orderDetail in ViewBag.BillDetailsList)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => orderDetail.Book)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => orderDetail.Book.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => orderDetail.Amount)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => orderDetail.Amount)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => orderDetail.Price)
+            </dt>
+            <dd>
+                    @orderDetail.Price.ToString("c")
+            </dd>
+            <dt>
+                Sub Total
+            </dt>
+            <dd>
+                @{subtotal = orderDetail.Price * orderDetail.Amount;}
+                @subtotal.ToString("c")
+            </dd>
+            <dt>
+                <br />
+            </dt>
+            <dd>
+                <br />
+            </dd>
+        }
+        <dt>
+            Total Price
+        </dt>
+        <dd>
+            @Model.BillTotal.ToString("c")
+        </dd>
+        <dt>
+            Trạng thái
+        </dt>
+        <dd>
+            @if (@Model.Status==0)
+                    {
+                        <p>Chưa hoàn thành</p>
+                    }else
+                    {
+                        <p>Đã hoàn thành</p>
+                        
+                    }
+        </dd>
+        
+        
+    </dl>
+</div>
+<div>
+    <a asp-action="Done" asp-route-id="@Model.BillID">Done</a> 
+    <a asp-action="Index">Back to List</a>
+</div>

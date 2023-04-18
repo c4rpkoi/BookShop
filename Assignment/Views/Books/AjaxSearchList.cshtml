@@ -1,0 +1,8 @@
+﻿@model List<Book>
+
+<h4>Kết quả tìm kiếm</h4>
+
+@foreach (var book in Model)
+{
+    @await Html.PartialAsync("BookSummary", book)
+}   

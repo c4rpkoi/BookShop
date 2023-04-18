@@ -1,0 +1,36 @@
+﻿@model Assignment.Models.AuthorBooks
+
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Xóa</h2>
+
+<h3>Bạn có chắc chắn xóa không?</h3>
+<div>
+    <h4>Sách tác giả</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <input type="hidden" asp-for="Id" />
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Books)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Books.Name)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

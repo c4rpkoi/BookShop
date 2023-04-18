@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Bill>
+
+@{
+    var pageName = "Đơn hàng";
+    ViewData["Title"] = pageName;
+}
+
+<h2>@pageName</h2>
+
+@if (Model.Count() <= 0)
+{
+    <h3>Bạn chưa có bất kỳ @pageName nào...</h3>
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillPlaced)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddressLine)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @item.BillTotal.ToString("c")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillPlaced)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @if (@item.User!=null)
+                    {
+                        @Html.DisplayFor(modelItem => item.User.Email)
+                    }else
+                    {
+
+                        <p>Khách lẻ</p>
+                    }
+                        
+                    
+                </td>
+                <td>
+                    @if (item.Status==0)
+                    {
+                        <p>Chưa hoàn thành</p>
+                    }else
+                    {
+                        <p>Đã hoàn thành</p>
+                        
+                    }
+                </td>
+                <td>
+                    @*<a asp-action="Edit" asp-route-id="@item.OrderId">Edit</a> |*@
+                    <a asp-action="Details" asp-route-id="@item.BillID" class="btn btn-info">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.BillID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
