@@ -1,9 +1,4 @@
-﻿using Assignment.IServices;
-using Assignment.Models;
-using Assignment.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Assignment.Controllers
 {
@@ -13,29 +8,31 @@ namespace Assignment.Controllers
         {
             return View();
         }
+
         public IActionResult About()
         {
-
             return View();
         }
+
         public IActionResult Contact()
         {
-
             return View();
         }
+
         public IActionResult Error()
         {
-
             return View();
         }
-        public IActionResult Login() {
 
-            return View();
-                }
-        [HttpPost]
-        public IActionResult Login( string userName, string password) 
+        public IActionResult Login()
         {
-            if (userName.Length<6 && password.Length<6)
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(string userName, string password)
+        {
+            if (userName.Length < 6 && password.Length < 6)
             {
                 return View();
             }
@@ -44,6 +41,5 @@ namespace Assignment.Controllers
                 return RedirectToAction("Index");
             }
         }
-
     }
 }

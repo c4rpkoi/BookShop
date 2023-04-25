@@ -60,16 +60,16 @@ namespace Assignment.Migrations
                     table.PrimaryKey("PK_Author", x => x.AuthorID);
                 });
 
-            //migrationBuilder.CreateTable(
-            //    name: "Cart",
-            //    columns: table => new
-            //    {
-            //        CartID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-            //    },
-            //    constraints: table =>
-            //    {
-            //        table.PrimaryKey("PK_Cart", x => x.CartID);
-            //    });
+            migrationBuilder.CreateTable(
+                name: "Cart",
+                columns: table => new
+                {
+                    CartID = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cart", x => x.CartID);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Categories",
@@ -329,12 +329,11 @@ namespace Assignment.Migrations
                         principalTable: "Books",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
-                    //table.ForeignKey(
-                    //    name: "FK_CartDetails_Cart_CartID",
-                    //    column: x => x.CartID,
-                    //    principalTable: "Cart",
-                    //    principalColumn: "CartID",
-                    //    onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CartDetails_Cart_CartID",
+                        column: x => x.CartID,
+                        principalTable: "Cart",
+                        principalColumn: "CartID");
                 });
 
             migrationBuilder.CreateIndex(
@@ -416,10 +415,10 @@ namespace Assignment.Migrations
                 table: "CartDetails",
                 column: "BookID");
 
-            //migrationBuilder.CreateIndex(
-            //    name: "IX_CartDetails_CartID",
-            //    table: "CartDetails",
-            //    column: "CartID");
+            migrationBuilder.CreateIndex(
+                name: "IX_CartDetails_CartID",
+                table: "CartDetails",
+                column: "CartID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

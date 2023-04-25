@@ -23,7 +23,7 @@ namespace Assignment.Data
         public DbSet<Supplier> Suppliers { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnConfiguring(optionsBuilder.UseSqlServer("Data Source=CARPKOI\\SQLEXPRESS01;Initial Catalog=ShopSach;Integrated Security=True;Encrypt=False"));
+            base.OnConfiguring(optionsBuilder.UseSqlServer("Data Source=DESKTOP-NRFSA7H;Initial Catalog=ShopBook;User ID=sa;Password=123456"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

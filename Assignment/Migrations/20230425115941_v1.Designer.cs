@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assignment.Migrations
 {
     [DbContext(typeof(ShopContext))]
-    [Migration("20230417180146_v1")]
+    [Migration("20230425115941_v1")]
     partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -196,7 +196,7 @@ namespace Assignment.Migrations
                     b.Property<Guid>("BookID")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CartID")
+                    b.Property<Guid?>("CartID")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CartDetailID");
@@ -525,9 +525,7 @@ namespace Assignment.Migrations
 
                     b.HasOne("Assignment.Models.Cart", "Cart")
                         .WithMany("CartDetails")
-                        .HasForeignKey("CartID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CartID");
 
                     b.Navigation("Books");
 
