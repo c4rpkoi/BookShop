@@ -20,7 +20,7 @@ namespace OnlinePizzaWebApplication
                 try
                 {
                     var context = services.GetRequiredService<ShopContext>();
-                    DbInitializer.Initialize(context, services);
+                    DbInitializer.Initialize(context, services); // tạo tk mặc định
                 }
                 catch (Exception ex)
                 {

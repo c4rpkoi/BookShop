@@ -24,8 +24,10 @@ namespace OnlinePizzaWebApplication
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        // chạy cái này trc
         public void ConfigureServices(IServiceCollection services)
         {
+            // inject connectionString
             services.AddDbContext<ShopContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
@@ -34,7 +36,7 @@ namespace OnlinePizzaWebApplication
                     .AddDefaultTokenProviders();
 
             services.AddControllersWithViews();
-
+            // DI
             services.AddTransient<IBooksServices, BooksServices>();
             services.AddTransient<ICategoryServices, CategoryServices>();
             services.AddTransient<ISupplierServices, SupplierServices>();
@@ -91,7 +93,7 @@ namespace OnlinePizzaWebApplication
             });
 
         }
-
+        // chạy cái này sau
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

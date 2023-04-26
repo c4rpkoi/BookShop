@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Assignment.ViewModels;
 using Microsoft.AspNetCore.Authorization;
-using Assignment.ViewModels;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace OnlinePizzaWebApplication.Controllers
 {
@@ -91,7 +86,7 @@ namespace OnlinePizzaWebApplication.Controllers
                 }
             }
 
-            ModelState.AddModelError("", "Username or Password was invalid.");
+            ModelState.AddModelError("", "Username or Password was invalid."); // mật khẩu sai return đến trang login
             return View(model);
         }
 
@@ -107,6 +102,5 @@ namespace OnlinePizzaWebApplication.Controllers
         {
             return View();
         }
-
     }
 }
